@@ -15,11 +15,10 @@ function getLocation(){
 }
 
 
-function findLocation(){
+function findLocation(userInput){
 
-    // apiKey and URL are now var variables so that they can be updated globally throughout the application
-    var apiKey = '272b68b95d1c42ff7655c2f715fa4879';
-    var locationURL = `https://api.openweathermap.org/data/2.5/weather?q={userInput}&appid={apiKey}`;
+    // the URL are now var variables so that they can be updated globally throughout the application
+    var locationURL = `${weatherURL}/geo/1.0/direct?q={userInput}&limit=5&appid=${weatherAPIKEY}`;
 
     fetch(locationURL)
         .then(function (response){
@@ -90,15 +89,9 @@ function displayWeatherForecast(weatherData){
 
 }
 
-function displayWeather(weatherData){
-    document.getElementById('weatherLocation').textContent = `$(weatherData.name), $(weatherData.country)`;
-
-    getWeather(weatherData.lat, weatherData.lon)
-}
-
 // Returns the weather based on the locations latitude and longitude
 function getWeather(lat, lon){
-    var weatherURL = `https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={apiKey}`;
+    var weatherURL = `${weatherURL}/geo/1.0/reverse?lat={lat}&lon={lon}&limit=5&appid=${weatherAPIKEY}`;
     fetch(weatherURL)
         .then(function(response){
             return response.json;
@@ -111,6 +104,12 @@ function getWeather(lat, lon){
             // displays the next five days weather
             displayWeatherForecast(data);
         })
+}
+
+function displayWeather(weatherData){
+    document.getElementById('weatherLocation').textContent = `$(weatherData.name), $(weatherData.country)`;
+
+    getWeather(weatherData.lat, weatherData.lon)
 }
 
 const weatherLocation = document.getElementById('weatherLocation');
