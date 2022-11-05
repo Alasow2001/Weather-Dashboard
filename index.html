@@ -14,9 +14,32 @@
     </header>
     
     <aside>
-        <input placeholder="Enter a country in here:">
-        <button>Select</button>
+        <input type="text" id="weatherLocation" placeholder="Enter a country in here:">
+        <button id="search">Select</button>
     </aside>
+
+    <section>
+        <div id="weather">
+            <div>Location info</div>
+            <div class="weather-info">
+                <div class="temperature">
+                    <span id="temperature-value">Temperature:</span>
+                </div>
+    
+                <div class="humidity">
+                    <span id="humidity-value">Humidity</span>
+                </div>
+    
+                <div class="wind-speed">
+                    <span id="wind-speed-value">Wind Speed</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="forecast">
+            <h1 id="forecast-list">Forecast for the 5 days</h1>
+        </div>
+    </section>
 
 </body>
 <script src="./assets/js/script.js"></script>
