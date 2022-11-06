@@ -1,5 +1,5 @@
-const WEATHER_BASE_API_URL = 'https://api.openweathermap.org';
-const WEATHER_API_KEY = '272b68b95d1c42ff7655c2f715fa4879';
+const WEATHER_BASE_API_URL = "https://api.openweathermap.org";
+const WEATHER_API_KEY = "272b68b95d1c42ff7655c2f715fa4879";
 const maxForecast = 5;
 
 const weatherLocation = document.getElementById('weatherLocation');
@@ -13,7 +13,7 @@ function getLocation(){
     if(userInput === ''){
         window.alert("Please enter a location");
     }else{
-        findLocation(weatherLocation);
+        findLocation(userInput);
     }
 
 }
@@ -22,6 +22,8 @@ function getLocation(){
 function findLocation(search){
 
     // the URL are now var variables so that they can be updated globally throughout the application
+
+    // This helps us access the weather information for the location inputted
     var apiURL = `${WEATHER_BASE_API_URL}/geo/1.0/direct?q=${search}&limit=5&appid=${WEATHER_API_KEY}`;
 
     fetch(apiURL)
@@ -29,13 +31,13 @@ function findLocation(search){
             return response.json();
         })
         .then(function (data){
-            // Stores the location information into an array for developers to see in the console
-            var myLocation = data[0];
+            // Stores the location information into an array, in case there are more than one with the same name not displayed to the screen
+
+            const myLocation = data[0];
 
             console.log("Pressed");
 
             console.log(myLocation);
-
 
         })
     
