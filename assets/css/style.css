@@ -1,0 +1,30 @@
+body{
+    background-color: teal;
+}
+
+header{
+    background-color: lightgreen;
+    display: flex;
+    justify-content: center;
+}
+
+aside{
+    margin-top: 5px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center
+}
+
+button{
+    box-sizing:border-box;
+}
+
+section{
+    background-color: rgb(107, 175, 139);
+    margin-top: 5px;
+}
+
+.weather-info{
+    background-color: aquamarine;
+}
