@@ -48,17 +48,18 @@ function findLocation(search){
 // Displays the current weather for the location based on the day the user uses the website
 function displayCurrentWeather(weatherData){
 
-    const currentWeather = weatherData.current;
+    var currentData = weatherData.current;
 
-    document.getElementById('temperature-value').textContent = "Temperature: ${currentWeather.temp}°C";
-    document.getElementById('humidity-value').textContent = "Humidity :${currentWeather.humidity}%";
-    document.getElementById('wind-speed-value').textContent = "Wind Speed: ${currentWeather.wind-speed}km/h";
+    document.getElementById('temp-value').textContent = `${currentData.temp.day}°C`;
+    document.getElementById('humid-value').textContent = `${currentData.humidity}`;
+    document.getElementById('wind-value').textContent = `${currentData.wind_speed}km/h`;
 
 }
 
 // 
 function getWeather(lat, lon){
-    var queryURL = `${WEATHER_BASE_API_URL}/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${WEATHER_API_KEY}`;
+    // var queryURL = `${WEATHER_BASE_API_URL}/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${WEATHER_API_KEY}`;
+    var queryURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly&appid=d91f911bcf2c0f925fb6535547a5ddc9`
     fetch(
         queryURL
     )
@@ -73,29 +74,23 @@ function getWeather(lat, lon){
 }
 
 function displayWeatherForecast(weatherData){
-    // Contains access to daily forecasts
-    var dailyData = weatherData.daily;
-
-    document.getElementById('forecast').style.display = 'block';
 
     const forecastList = document.getElementById('forecast-list');
     forecastList.innerHTML = '';
 
-    console.log(weatherData);
-
     // This loop generates the weather forecast for the next five days
     for(var i = 0; i < MAX_FORECAST; i++){
-        const dailyForecast = weatherData[i];
-        const day = new Date(weatherData.dt * 1000).toLocaleDateString('en-GB' ,{weekday: 'long'});
-        const temp = `${weatherData.temp}°`;
-        const humidity = `${weatherData.humidity}%`;
-        const wind = `${weatherData.wind}km/h`;
+        var dailyForecast = weatherData.daily[i]
+        var day = new Date(dailyForecast.dt * 1000).toLocaleDateString('en-GB' ,{weekday: 'long'});
+        var temp = `${dailyForecast.temp.day}°`;
+        var humidity = `${dailyForecast.humidity}%`;
+        var wind = `${dailyForecast.wind_speed}km/h`;
 
 
-        const nextForecast = document.createElement('div');
-        nextForecast.classList.add('forecast-day');
+        var nextForecast = document.createElement('div');
+        nextForecast.classList.add('forecast-list');
         nextForecast.innerHTML = `<div class="weather-info">
-        <div class=date>
+        <div>
             <span>${day}</span>
         </div>
         <div class="temperature">
