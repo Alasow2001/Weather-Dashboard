@@ -82,9 +82,9 @@ function displayWeatherForecast(weatherData){
     for(var i = 1; i < MAX_FORECAST; i++){
         var dailyForecast = weatherData.daily[i]
         var day = new Date(dailyForecast.dt * 1000).toLocaleDateString('en-GB' ,{weekday: 'long'});
-        var temp = `${dailyForecast.temp.day}°`;
-        var humidity = `${dailyForecast.humidity}%`;
-        var wind = `${dailyForecast.wind_speed}km/h`;
+        var temp = `Temperature: ${dailyForecast.temp.day}°`;
+        var humidity = `Humidity: ${dailyForecast.humidity}%`;
+        var wind = `Wind Speed: ${dailyForecast.wind_speed}km/h`;
 
 
         var nextForecast = document.createElement('div');
