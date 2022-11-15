@@ -1,6 +1,6 @@
 const WEATHER_BASE_API_URL = "https://api.openweathermap.org";
 const WEATHER_API_KEY = "272b68b95d1c42ff7655c2f715fa4879";
-var MAX_FORECAST = 5;
+var MAX_FORECAST = 6;
 
 const weatherLocation = document.getElementById('weatherLocation');
 const searchBtn = document.getElementById('search');
@@ -50,7 +50,7 @@ function displayCurrentWeather(weatherData){
 
     var currentData = weatherData.current;
 
-    document.getElementById('temp-value').textContent = `${currentData.temp.day}°C`;
+    document.getElementById('temp-value').textContent = `${currentData.temp}°F`;
     document.getElementById('humid-value').textContent = `${currentData.humidity}`;
     document.getElementById('wind-value').textContent = `${currentData.wind_speed}km/h`;
 
@@ -79,7 +79,7 @@ function displayWeatherForecast(weatherData){
     forecastList.innerHTML = '';
 
     // This loop generates the weather forecast for the next five days
-    for(var i = 0; i < MAX_FORECAST; i++){
+    for(var i = 1; i < MAX_FORECAST; i++){
         var dailyForecast = weatherData.daily[i]
         var day = new Date(dailyForecast.dt * 1000).toLocaleDateString('en-GB' ,{weekday: 'long'});
         var temp = `${dailyForecast.temp.day}°`;
