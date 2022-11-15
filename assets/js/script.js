@@ -50,9 +50,9 @@ function displayCurrentWeather(weatherData){
 
     var currentData = weatherData.current;
 
-    document.getElementById('temp-value').textContent = `${currentData.temp}°F`;
-    document.getElementById('humid-value').textContent = `${currentData.humidity}`;
-    document.getElementById('wind-value').textContent = `${currentData.wind_speed}km/h`;
+    document.getElementById('temp-value').textContent = `Temperature: ${currentData.temp}°F`;
+    document.getElementById('humid-value').textContent = `Humidity: ${currentData.humidity}%`;
+    document.getElementById('wind-value').textContent = `Wind Speed: ${currentData.wind_speed}km/h`;
 
 }
 
