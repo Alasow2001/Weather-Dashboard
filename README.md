@@ -22,4 +22,4 @@ This can be used to plan daily outgoings with friends/family or other places in 
 
 # Links
 
-Deployed link: 
+Deployed link: https://github.com/Alasow2001/Weather-Dashboard 
